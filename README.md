@@ -6,3 +6,7 @@ mvn spring-boot:run
 open http://localhost:48888/
 
 ```
+
+## Running application
+
+![](taxo-sql-generator-screenshot.gif)
