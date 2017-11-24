@@ -1,5 +1,7 @@
 package com.taxo.sql.taxosqlgenerator.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Component
 public class ClassifiedSqlGeneratorService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ClassifiedSqlGeneratorService.class);
 
     private String SQL_TEMPLATE = "SELECT\n" +
             "    a.IndividualId, \n" +
@@ -33,7 +37,7 @@ public class ClassifiedSqlGeneratorService {
     public String generate(MultipartFile file) throws IOException {
 
         List<String> userIds = Util.generateUserIds(file);
-        System.out.println("count: " + userIds.size());
+        logger.info("count: " + userIds.size());
 
         return Util.getResponseResult(SQL_TEMPLATE, userIds);
     }
